@@ -4,8 +4,8 @@
 [![GitHub Open Issues](https://img.shields.io/github/issues/pozgo/docker-gitlab-ce-runner-docker.svg)](https://github.com/pozgo/docker-gitlab-ce-runner-docker/issues)
 [![GitHub Stars](https://img.shields.io/github/stars/pozgo/docker-gitlab-ce-runner-docker.svg)](https://github.com/pozgo/docker-gitlab-ce-runner-docker)
 [![GitHub Forks](https://img.shields.io/github/forks/pozgo/docker-gitlab-ce-runner-docker.svg)](https://github.com/pozgo/docker-gitlab-ce-runner-docker-docker)  
-[![Stars on Docker Hub](https://img.shields.io/docker/stars/pozgo/docker-gitlab-ce-runner-docker.svg)](https://hub.docker.com/r/pozgo/docker-gitlab-ce-runner-docker)
-[![Pulls on Docker Hub](https://img.shields.io/docker/pulls/pozgo/docker-gitlab-ce-runner-docker.svg)](https://hub.docker.com/r/pozgo/docker-gitlab-ce-runner-docker)  
+[![Stars on Docker Hub](https://img.shields.io/docker/stars/polinux/gitlab-ce-runner-docker.svg)](https://hub.docker.com/r/polinux/gitlab-ce-runner-docker)
+[![Pulls on Docker Hub](https://img.shields.io/docker/pulls/polinux/gitlab-ce-runner-docker.svg)](https://hub.docker.com/r/polinux/gitlab-ce-runner-docker)  
 [![](https://images.microbadger.com/badges/image/polinux/gitlab-ce-runner-docker.svg)](http://microbadger.com/images/polinux/gitlab-ce-runner-docker)  
 
 
