@@ -1,0 +1,20 @@
+machine:
+  services:
+    - docker
+
+dependencies:
+  override:
+    - docker build -t polinux/gitlab-ce-runner-docker .
+
+# Run tests
+test:
+  override:
+    # Start Docker
+    - docker run -d --name gitlab-runner -p 12345:12345 --privileged -e DOCKER_PORT=12345 polinux/gitlab-ce-runner-docker
+    # Log
+    - docker logs -f gitlab-runner > ${CIRCLE_ARTIFACTS}/gitlab-runner.log 2>&1:
+        background: true
+    # Sleep for 10 seconds
+    - sleep 10
+    # Check if docker started. (CircleCi doesnt allow full process to work so we need to test if it got that far.)
+    - grep "new containerd process, pid" ${CIRCLE_ARTIFACTS}/gitlab-runner.log
