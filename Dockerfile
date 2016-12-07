@@ -7,7 +7,8 @@ ENV DOCKER_PORT=2375 \
     GITLAB_CE_REGISTRATION_TOKEN=token \
     GITLAB_CE_NAME="my-runner" \
     GITLAB_CE_EXECUTORS="docker" \
-    GITLAB_CE_TAG_LIST="test,build,deploy"
+    GITLAB_CE_TAG_LIST="test,build,deploy" \
+    DOCKER_INSECURE_REGISTRY="No-Insecure-Registry"
 
 COPY container-files /
 

@@ -32,6 +32,9 @@ This [Image]() was created for use with GitLab and deploying GitLabCI on local m
 `GITLAB_CE_NAME` - Name of the runner  
 `GITLAB_CE_TAG_LIST` Tags with which runner will be set
 
+Docker related variables:  
+`DOCKER_INSECURE_REGISTRY` - specify `insecure-registry` to which you want to push buildt images.  
+
 **Image need to be run with `--privileged` flag for docker in docker support**
 
 Docker troubleshooting
