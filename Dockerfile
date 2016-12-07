@@ -13,13 +13,14 @@ COPY container-files /
 
 RUN \
   rpm --rebuilddb && yum clean all && \
-  yum install -y docker-engine git wget && \
+  yum install -y docker-engine git wget sudo && \
   yum clean all && \
   curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose && \
   chmod +x /usr/local/bin/docker-compose && \
   curl -L https://gitlab-ci-multi-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-ci-multi-runner-linux-amd64 > /bin/gitlab-runner && \
   chmod +x /bin/gitlab-runner && \
-  useradd --comment 'GitLab Runner' --create-home gitlab-runner --shell /bin/bash
+  useradd --comment 'GitLab Runner' --create-home gitlab-runner --shell /bin/bash && \
+  gpasswd -a gitlab-runner docker
 
 EXPOSE 2375
 
