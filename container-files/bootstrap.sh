@@ -32,8 +32,8 @@ log "Starting Docker Daemon on port: ${DOCKER_PORT}"
 # Validate support for insecure-registry
 if [[ ${DOCKER_INSECURE_REGISTRY} != "No-Insecure-Registry" ]]; then
   log "Insecure Registry: ${DOCKER_INSECURE_REGISTRY}"
-  /usr/bin/docker daemon -H tcp://0.0.0.0:${DOCKER_PORT} -H unix:///var/run/docker.sock --insecure-registry ${DOCKER_INSECURE_REGISTRY}
+  /usr/bin/docker daemon -H tcp://0.0.0.0:${DOCKER_PORT} -H unix:///var/run/docker.sock --insecure-registry ${DOCKER_INSECURE_REGISTRY} --storage-opt dm.basesize=1024G
 else
   log "No insecure registry defined, ignoring option --insecure-registry"
-  /usr/bin/docker daemon -H tcp://0.0.0.0:${DOCKER_PORT} -H unix:///var/run/docker.sock
+  /usr/bin/docker daemon -H tcp://0.0.0.0:${DOCKER_PORT} -H unix:///var/run/docker.sock --storage-opt dm.basesize=1024G
   fi
