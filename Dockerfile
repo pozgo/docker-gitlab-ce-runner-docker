@@ -1,7 +1,9 @@
 FROM centos:7
 MAINTAINER Przemyslaw Ozgo linux@ozgo.info
 
-ENV DOCKER_PORT=2375 \
+# DOCKER_STORAGE_SIZE is using Gigabytes as value.
+ENV DOCKER_STORAGE_SIZE=10 \
+    DOCKER_PORT=2375 \
     DOCKER_COMPOSE_VERSION=1.9.0 \
     GITLAB_CE_COORDINATOR=localhost \
     GITLAB_CE_REGISTRATION_TOKEN=token \

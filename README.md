@@ -34,6 +34,7 @@ This [Image]() was created for use with GitLab and deploying GitLabCI on local m
 
 Docker related variables:  
 `DOCKER_INSECURE_REGISTRY` - specify `insecure-registry` to which you want to push buildt images.  
+`DOCKER_STORAGE_SIZE` - Docker storage size in gigabytes. Default set to 10GB
 
 **Image need to be run with `--privileged` flag for docker in docker support**
 
