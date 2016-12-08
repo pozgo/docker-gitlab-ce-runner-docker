@@ -15,7 +15,7 @@ ENV DOCKER_STORAGE_SIZE=10 \
 COPY container-files /
 
 RUN \
-  rpm --rebuilddb && yum clean all && \
+  rpm --rebuilddb && yum clean all && yum update -y && \
   yum install -y docker-engine git wget sudo && \
   yum clean all && \
   curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose && \

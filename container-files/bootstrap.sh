@@ -21,12 +21,6 @@ start_runner() {
   log "Token: ${GITLAB_CE_REGISTRATION_TOKEN}"
 }
 
-set_devicemapper_size() {
-  mkdir -p /docker/devicemapper/devicemapper
-  dd if=/dev/zero of=/docker/devicemapper/devicemapper/data bs=1G count=0 seek=${DOCKER_STORAGE_SIZE}
-  log "Docker Storage set to: ${DOCKER_STORAGE_SIZE} GB"
-}
-
 if [ ${GITLAB_CE_COORDINATOR} != "localhost" ]; then
   register
   start_runner
@@ -35,7 +29,6 @@ else
 fi
 # Docker Daemon Start
 log "Starting Docker Daemon on port: ${DOCKER_PORT}"
-set_devicemapper_size
 # Validate support for insecure-registry
 if [[ ${DOCKER_INSECURE_REGISTRY} != "No-Insecure-Registry" ]]; then
   log "Insecure Registry: ${DOCKER_INSECURE_REGISTRY}"
