@@ -36,6 +36,8 @@ Docker related variables:
 `DOCKER_INSECURE_REGISTRY` - specify `insecure-registry` to which you want to push buildt images.  
 `DOCKER_STORAGE_SIZE` - Docker storage size in gigabytes. Default set to 10GB
 
+**If AUFS filesystem is used do not sepcify `DOCKER_STORAGE_SIZE`**
+
 **Image need to be run with `--privileged` flag for docker in docker support**
 
 Docker troubleshooting

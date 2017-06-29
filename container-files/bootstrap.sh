@@ -27,13 +27,21 @@ if [ ${GITLAB_CE_COORDINATOR} != "localhost" ]; then
 else
   log "GitLab CI Link not defined. Rolling into docker in docker mode only"
 fi
+
+# Verify is storage size was defined. (Shouldnt be defined if AUFS used.)
+if [ ${DOCKER_STORAGE_SIZE} == "10" ]; then
+  VOL_SIZE=""
+else
+  VOL_SIZE="--storage-opt dm.basesize=${DOCKER_STORAGE_SIZE}G"
+fi
+
 # Docker Daemon Start
 log "Starting Docker Daemon on port: ${DOCKER_PORT}"
 # Validate support for insecure-registry
 if [[ ${DOCKER_INSECURE_REGISTRY} != "No-Insecure-Registry" ]]; then
   log "Insecure Registry: ${DOCKER_INSECURE_REGISTRY}"
-  /usr/bin/dockerd -g /docker -H tcp://0.0.0.0:${DOCKER_PORT} -H unix:///var/run/docker.sock --insecure-registry ${DOCKER_INSECURE_REGISTRY} --storage-opt dm.basesize=${DOCKER_STORAGE_SIZE}G
+  /usr/bin/dockerd -g /docker -H tcp://0.0.0.0:${DOCKER_PORT} -H unix:///var/run/docker.sock --insecure-registry ${DOCKER_INSECURE_REGISTRY} ${VOL_SIZE}
 else
   log "No insecure registry defined, ignoring option --insecure-registry"
-  /usr/bin/dockerd -g /docker -H tcp://0.0.0.0:${DOCKER_PORT} -H unix:///var/run/docker.sock  --storage-opt dm.basesize=${DOCKER_STORAGE_SIZE}G
-  fi
+  /usr/bin/dockerd -g /docker -H tcp://0.0.0.0:${DOCKER_PORT} -H unix:///var/run/docker.sock ${VOL_SIZE}
+fi
