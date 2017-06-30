@@ -16,23 +16,14 @@ This [Image]() was created for use with GitLab and deploying GitLabCI on local m
     docker run \
       --name gitlab-runner \
       -d \
-      -e GITLAB_CE_COORDINATOR=http://my.domain.com \
-      -e GITLAB_CE_REGISTRATION_TOKEN=my-token \
-      -e GITLAB_CE_NAME="My Local Runner" \
-      -e GITLAB_CE_EXECUTORS="shell" \
-      -e GITLAB_CE_TAG_LIST="test,build,deploy" \
       --privileged \
-      polinux/gitlab-ce-runner-docker
+      -e DOCKER_INSECURE_REGISTRY="my-registry:port"
+      polinux/gitlab-ce-runner-docker --name="My-Runner" --url="http://my-gitlab.com" --registration-token="my-token" --executor="shell"
+
+Image requires arguments to be passed as command.
 
 
 ### Environmental Variables
-
-`GITLAB_CE_COORDINATOR` - Name of the server to which runner should connect  
-`GITLAB_CE_REGISTRATION_TOKEN` - Registration token  
-`GITLAB_CE_NAME` - Name of the runner  
-`GITLAB_CE_TAG_LIST` Tags with which runner will be set
-
-Docker related variables:  
 `DOCKER_INSECURE_REGISTRY` - specify `insecure-registry` to which you want to push buildt images.  
 `DOCKER_STORAGE_SIZE` - Docker storage size in gigabytes. Default set to 10GB
 

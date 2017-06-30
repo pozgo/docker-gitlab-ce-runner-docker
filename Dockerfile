@@ -7,11 +7,6 @@ ENV DOCKER_STORAGE_SIZE=10 \
     DOCKER_COMPOSE_VERSION=1.14.0 \
     DOCKER_VERSION=17.05.0.ce-1 \
     GITLAB_CE_RUNNER_VERSION=9.3.0 \
-    GITLAB_CE_COORDINATOR=localhost \
-    GITLAB_CE_REGISTRATION_TOKEN=token \
-    GITLAB_CE_NAME="my-runner" \
-    GITLAB_CE_EXECUTORS="docker" \
-    GITLAB_CE_TAG_LIST="test,build,deploy" \
     DOCKER_INSECURE_REGISTRY="No-Insecure-Registry"
 
 COPY container-files /
