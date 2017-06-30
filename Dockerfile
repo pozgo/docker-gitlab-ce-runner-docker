@@ -1,4 +1,4 @@
-FROM centos:7
+FROM polinux/centos-supervisor
 MAINTAINER Przemyslaw Ozgo linux@ozgo.info
 
 # DOCKER_STORAGE_SIZE is using Gigabytes as value.
@@ -7,9 +7,16 @@ ENV DOCKER_STORAGE_SIZE=10 \
     DOCKER_COMPOSE_VERSION=1.14.0 \
     DOCKER_VERSION=17.05.0.ce-1 \
     GITLAB_CE_RUNNER_VERSION=9.3.0 \
-    DOCKER_INSECURE_REGISTRY="No-Insecure-Registry"
+    DOCKER_INSECURE_REGISTRY="No-Insecure-Registry" \
+    DOCKER_REGISTRY_USER=username \
+    DOCKER_REGISTRY_PASS=mypass \
+    RUNNER_NAME=name \
+    RUNNER_URL="http://my-gitlab.com" \
+    RUNNER_REGISTRATION_TOKEN=token \
+    RUNNER_EXECUTOR=shell \
+    RUNNER_MULTI_PARAMS=""
 
-COPY container-files /
+COPY docker.repo /etc/yum.repos.d/docker.repo
 
 RUN \
   rpm --rebuilddb && yum clean all && yum update -y && \
@@ -22,6 +29,6 @@ RUN \
   useradd --comment 'GitLab Runner' --create-home gitlab-runner --shell /bin/bash && \
   gpasswd -a gitlab-runner docker
 
-EXPOSE 2375
+COPY container-files /
 
-ENTRYPOINT ["/bootstrap.sh"]
+EXPOSE 2375
